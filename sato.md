@@ -77,32 +77,32 @@ VALUES(15,'Cuphead','シューティング アクション',5,2350);
 
 5.game_hardの開発元がソニーではないデータを抽出せよ
 
-.'genre','released'を'ジャンル','発売日'と表示させて抽出せよ
+6.'genre','released'を'ジャンル','発売日'と表示させて抽出せよ
 
-.game_softのpriceが5000以上のデータを抽出せよ 取得項目はtitleとpriceとする
+7.game_softのpriceが5000以上のデータを抽出せよ 取得項目はtitleとpriceとする
 
-.priceの値が最も大きいデータを抽出せよ 取得項目はtitleとする
+8.priceの値が最も大きいデータを抽出せよ 取得項目はtitleとする
 
-.game_softをreleasedの昇順で並び替えよ
+9.game_softをreleasedの昇順で並び替えよ
 
-.releasedが'2016-01-01'より前のデータのpriceを半額にせよ
+10.releasedが'2016-01-01'より前のデータのpriceを半額にせよ
 
-.genreの種類一覧を抽出せよ
+11.genreの種類一覧を抽出せよ
 
-.genreにて'アクション'が含まれているデータを抽出せよ
+12.genreにて'アクション'が含まれているデータを抽出せよ
 
-.機種名毎に、使用できるソフトのpriceの合計を表示せよ 取得項目は機種名とsum(price)とする
+13.機種名毎に、使用できるソフトのpriceの合計を表示せよ 取得項目は機種名とsum(price)とする
 
-.機種名毎に、使用できるソフトのpriceの平均を表示せよ 取得項目は機種名とavg(price)とする
+14.機種名毎に、使用できるソフトのpriceの平均を表示せよ 取得項目は機種名とavg(price)とする
 
-.機種名が3DSで使用できるgame_softのデータを抽出せよ
+15.機種名が3DSで使用できるgame_softのデータを抽出せよ
 
-.titleの文字数を表示せよ
+16.titleの文字数を表示せよ
 
-.priceの合計額を、3桁毎に[,]をいれて表示せよ
+17.priceの合計額を、3桁毎に[,]をいれて表示せよ
 
-.titleがCupheadのデータを、Switchで使用できるソフトとして変更せよ
+18.titleがCupheadのデータを、Switchで使用できるソフトとして変更せよ
 
-.game_softに タイトル:Horizon Zero Dawn,発売日:2017-03-02,hard_id:4 のデータを挿入せよ
+19.game_softに タイトル:Horizon Zero Dawn,発売日:2017-03-02,hard_id:4 のデータを挿入せよ
 
-.開発元がSonyの機種で使用できるgame_softのデータを削除せよ
+20.開発元がSonyの機種で使用できるgame_softのデータを削除せよ
