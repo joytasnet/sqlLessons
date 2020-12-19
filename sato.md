@@ -4,48 +4,63 @@
 
 ```
 
-CREATE DATABASE cd_app
+CREATE DATABASE game_app
 DEFAULT CHARACTER SET utf8
 ```
 
 ## 以下の２つのテーブルを作成せし、初期データを挿入せよ
 
-### categories
+### gamehard
 
 ```
-CREATE TABLE `categories` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
-  `category` varchar(10) NOT NULL
+CREATE TABLE game_hard (
+  id int(11) PRIMARY KEY AUTO_INCREMENT,
+  機種名 varchar(20) NOT NULL,
+  開発元 varchar(20) NOT NULL
 );
 
-INSERT INTO `categories` (`id`, `category`)
+INSERT INTO game_hard (id,機種名,開発元)
 VALUES
-(1, '洋楽'),
-(2, 'J-POP'),
-(3, '演歌'),
-(4, 'DANCE');
+(1,'3DS','任天堂'),
+(2,'Switch','任天堂'),
+(3,'PSVita','Sony'),
+(4,'PS4','Sony'),
+(5,'Xbox One','マイクロソフト');
 ```
 
 ### cds
 
 ```
-CREATE TABLE `cds` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `cat_id` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL
+CREATE TABLE game_soft (
+  id int(11) PRIMARY KEY AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  genre varchar(255) NOT NULL,
+  released date,
+  hard_id int(11) DEFAULT NULL,
+  price int(11)
 );
 
-INSERT INTO `cds` (`id`, `title`, `cat_id`, `price`)
+INSERT INTO game_soft (id,title,genre,release,hard_id,price)
 VALUES
-(1, 'PLEASE PLEASE ME', 1, 2800),
-(2, 'With the Beatles', 1, 2800),
-(3, 'A Hard Days Night', 1, 2800),
-(4, '17歳の地図', 2, 3200),
-(5, '回帰線', 2, 3200),
-(6, '壊れた扉から', 2, 3200),
-(7, '北の大地', 3, 3600),
-(8, '目蒲線物語', NULL, 1200);
+(1, 'New スーパーマリオブラザーズ2','アクション','2012-07-28', 1, 4571),
+(2, 'ポケットモンスター サン・ムーン','RPG','2016-11-18', 1, 5478),
+(3, 'リズム天国 ザ・ベスト＋','リズムゲーム','2015-06-11', 1, 4700),
+
+(4, 'あつまれ どうぶつの森','アクション','2012-07-28', 2, 4571),
+(5, 'ゼルダの伝説 ブレス オブ ザ ワイルド','アクション','2015-06-11', 2, 4571),
+(6, 'ポケットモンスター ソード・シールド','アクション','2012-07-28', 2, 4571),
+
+(7, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 3, 4571),
+(8, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 3, 4571),
+(9, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 3, 4571),
+
+(10, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 4, 4571),
+(11, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 4, 4571),
+(12, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 4, 4571),
+
+(13, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 5, 4571),
+(14, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 5, 4571),
+(15, 'ポケットモンスター サン・ムーン','アクション','2012-07-28', 5, 4571);
 
 ```
 
