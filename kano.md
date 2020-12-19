@@ -10,12 +10,12 @@ DEFAULT CHARACTER SET utf8
 
 ## 以下の２つのテーブルを作成せし、初期データを挿入せよ
 
-### categories
+### publisher
 
 ```
-CREATE TABLE `categories` (
+CREATE TABLE `publisher` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
-  `category` varchar(10) NOT NULL
+  `publisher` varchar(10) NOT NULL
 );
 
 INSERT INTO `publisher` (`id`, `publisher`)
