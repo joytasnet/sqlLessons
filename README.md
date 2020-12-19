@@ -8,7 +8,7 @@ CREATE DATABASE cd_app
 DEFAULT CHARACTER SET utf8
 ```
 
-## 以下の２つのテーブルを作成せし、初期データを挿入せよ
+## 以下の２つのテーブルを作成し、初期データを挿入せよ
 
 ### categories
 
