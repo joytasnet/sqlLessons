@@ -10,7 +10,7 @@ DEFAULT CHARACTER SET utf8
 
 ## 以下の２つのテーブルを作成せし、初期データを挿入せよ
 
-### gamehard
+### game_hard
 
 ```
 CREATE TABLE game_hard (
