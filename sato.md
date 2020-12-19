@@ -28,7 +28,7 @@ VALUES
 (5,'Xbox One','マイクロソフト');
 ```
 
-### cds
+### game_soft
 
 ```
 CREATE TABLE game_soft (
