@@ -19,12 +19,12 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `category`)
 VALUES
-(1, '武器'),
-(2, '防具'),
+(1, 'weapon'),
+(2, 'protecter'),
 (3, 'アクセサリー');
 ```
 
-### cds
+### equ
 
 ```
 CREATE TABLE `equ` (
@@ -52,7 +52,7 @@ VALUES
 
 ## 以下の問に答えよ(20問)
 
-1. categoriesテーブルの内容を(1,'weapon'),(2,'protecter'),(3,'accesory')に変更せよ
+1. categoriesテーブルのidの3categoryを「accesory」に変更せよ
 
 1. categoriesテーブルのデータを取得せよ
 
@@ -62,14 +62,15 @@ VALUES
 
 1. equテーブルをnameの昇順で表示せよ
 
+1. equテーブルからb_priceの値が2番目から4番目に高いデータを抽出せよ
+
 1. equテーブルからb_priceが3000以上のデータを抽出せよ
 
 1. equテーブルからcat_idが2以外のデータを抽出せよ
 
 1. equテーブルからcat_idが2でvalueが30以上のデータを抽出せよ
 
-1. equテーブルから
-//OR
+1. equテーブルからvalueが10未満もしくは20以上のデータを抽出せよ
 
 1. equテーブルからvalueが10~30のデータを取得せよ
 
@@ -83,4 +84,10 @@ VALUES
 
 1. equテーブルからnameを名前として、s_priceからb_priceを引いた値を差額として取得せよ(NULLは除外すること)
 
-1. equテーブルとcategoriesテーブルを結合して全項目を表示せよ
+1. equテーブルからnameを名前として、b_priceを価格として、cat_idの値に「階」を結合した文字列(例:1階)を売り場として取得せよ
+
+1. equテーブルとcategoriesテーブルを結合し、name,category,valueを抽出し、cat_idの昇順、次いでvalueの降順で表示せよ
+
+1. equテーブルとcategoriesテーブルを結合し、category名とcategory別のb_priceの平均(整数で表示)を昇順で表示せよ
+
+1. equテーブルとcategoriesテーブルを結合し、category別のs_priceの合計を求め、求めた値が1000以上のcategory名とその値を表示せよ
