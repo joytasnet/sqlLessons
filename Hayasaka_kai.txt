@@ -1,0 +1,62 @@
+1.studentsテーブルにname(藤井サクラ)、school_id(3)を追加せよ
+INSERT INTO students(name,school_id)
+VALUES('藤井サクラ',3)
+
+2.studentsテーブルの全てのデータを抽出せよ。
+SELECT * FROM students; 
+
+3.subjectsテーブルにname(地理・歴史)を追加せよ
+INSERT INTO subjects(name)
+VALUES('地理'),('歴史')
+
+4.subjectsテーブルの全てのデータを抽出せよ。
+SELECT * FROM subjects;
+
+5.studentsテーブルのschool_id=1以外のデータを抽出せよ。
+SELECT * FROM students WHERE school_id<>1;
+
+6.studentsテーブルのschool_id=7のデータを削除せよ。
+DELETE FROM students WHERE school_id=7;
+
+7.examsテーブルのstudent_id=1,subjects_id=1のscoreを66にせよ。
+UPDATE exams SET score=66 WHERE student_id=1 and subjects_id=1;
+
+8.examsテーブルの日付を昇順に並べ替えよ。
+SELECT * FROM exams ORDER BY date ASC;
+
+9.studentsテーブル。名前に[木]が含まれる生徒を抽出せよ
+SELECT * FROM students WHERE name LIKE '%木%';
+
+10.全生徒数を抽出せよ。
+SELECT count(*) FROM students;
+
+11.examsテーブル。スコアの平均を求めよ。
+SELECT avg(score) FROM exams;
+
+12.studentsとschoolsを内部結合。学校名と生徒名を表示せよ。
+SELECT students.name,schools.name FROM students
+LEFT JOIN schools
+ON students.school_id=schools.id;
+
+13.studentsとexamsを内部結合。試験を受けた生徒のidと名前を抽出。重複は除外する。
+SELECT exams.student_id,students.name FROM students
+LEFT JOIN exams
+ON students.id=exams.students_id;
+
+14.subjectsとexamsを内部結合。科目ごとの平均点を求めよ。
+SELECT avg(score) FROM subjects
+LEFT JOIN exams
+ON subjects.id=exams.subjects_id;
+
+15.schoolsとstudentsを内部結合。各学校の生徒数を求めよ。取得カラムは学校名と生徒数とする。
+SELECT schools.name AS 学校名,count(students.name) AS 生徒数 FROM schools
+LEFT JOIN students
+ON schools.id=students.school_id
+GROUP BY  schools.name
+
+16.studentsとexamsを内部結合。試験を受けた生徒の合計点を求め、降順に抽出せよ。取得カラムは生徒名と合計点とする。
+SELECT students.name AS 生徒名,sum(exams.score) AS 合計点 FROM students
+LEFT JOIN exams
+ON students.id=exams.student_id
+GROUP BY students.name
+ORDER BY sum(exams.score) DESC
