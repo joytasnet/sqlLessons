@@ -1,0 +1,92 @@
+1.menuテーブルから、カテゴリーがセットでないものを抽出せよ
+SELECT * FROM menu WHERE cat_id<>4;
+
+2.categoriesテーブルに、テイクアウトを追加せよ
+INSERT INTO categories (categor)
+VALUES('テイクアウト');
+
+3.menuテーブルに以下のものを追加せよ。カテゴリーはテイクアウト、在庫はinStockとする。 ・持ち帰りコーヒー　400円 ・持ち帰りサンドイッチ 700円 ・持ち帰りケーキ 400円
+INSERT INTO menu (name,cat_id,price,stock)
+VALUES
+('持ち帰りコーヒー',5,400,'inStock'),
+('持ち帰りサンドイッチ',5,400,'inStock'),
+('持ち帰りケーキ',5,400,'inStock');
+
+4.categoriesテーブルに新しいカテゴリーをひとつ追加せよ。
+INSERT INTO categories(category)
+VALUES('アルコール');
+
+5.試作メニューを考案し、名前、カテゴリー、値段、在庫の有無を設定せよ。
+UPDATE menu SET
+name='ビール',price=480,stock='inStock'
+WHERE id=8;
+
+6.試作ドリンク、試作デザートも同様に考案し、項目を設定せよ。
+UPDATE menu SET
+name='ミックスジュース', cat_id= ,price=380,stock='limitedStock'
+WHERE id=9;
+
+UPDATE menu SET
+name='ティラミス', price=400,stock='limitedStock'
+WHERE id=10;
+
+7.好きな組み合わせでメニューを3つ選び、合計金額を抽出せよ。 なお、ドリンクとドリンク以外のメニューを同時に選んだ場合、セット値引きを適用すること。
+SELECT sum(price) FROM menu
+WHERE 
+id=1 OR id=4 OR id=6 OR id=11;
+
+
+8.menuテーブルの総数をカウントせよ。
+SELECT COUNT(*)
+FROM menu;
+
+9.すべてのメニューの平均値を抽出せよ。
+SELECT avg(price) FROM menu ;
+
+10.メニューから値段が一番高い順に3つ抽出せよ。
+SELECT * FROM menu
+ORDER BY price DESC LIMIT 3;
+
+11.任意の数のメニューを在庫切れ(NULL)にせよ。
+UPDATE  menu SET stock=NULL
+WHERE id=10;
+
+12.任意の数のメニューを在庫わずか(limitedStock)にせよ。
+UPDATE  menu SET stock='limitedStock'
+WHERE id=9;
+
+13.在庫状況が違うものごとに、メニューの数をカウントせよ。
+SELECT COUNT(stock) FROM menu WHERE stock=instock;
+
+14.任意のメニューをひとつ選んで削除せよ。
+DELETE FROM menu WHERE id=8;
+
+15.デザートメニューを一律50円値上げせよ。
+UPDATE menu SET
+price=price-50
+WHERE cat_id=3;
+
+16.ドリンクメニューを2つ選び、名前にプレミアムをつけて200円値上げせよ。 在庫がない場合はNULLから変えること。
+UPDATE menu SET
+price=price+200
+name=concat('プレミアム',name)
+WHERE id=4 OR id=5;
+
+17.カテゴリーごとの値段の平均値をとり、一番安いカテゴリーを抽出せよ。
+SELECT category,avg(price) FROM menu
+JOIN categories
+ON menu.cat_id=categories.id
+GROUP BY cat_id
+ORDER BY avg(price) ASC LIMIT 1;
+
+18.全てのメニューの値段のうち、8番目に安いものから高いものへ3種類抽出せよ。
+SELECT * FROM menu 
+ORDER BY price ASC LIMIT 3 OFFSET 8;
+
+19.全てのメニューの中から、500円以上700円以下のものを抽出せよ。
+SELECT * FROM menu 
+WHERE
+price BETWEEN 500 AND 700;
+
+20.カラム(name,price,stock)を(名前、値段、在庫)と書き換えて抽出せよ。
+SELECT name AS 名前, price AS 値段,stock AS 在庫 FROM menu
