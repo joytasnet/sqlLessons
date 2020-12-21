@@ -1,0 +1,93 @@
+1.categoriesテーブルのidの3categoryを「accesory」に変更せよ
+
+UPDATE categories SET category='accesory'
+WHERE id=3;
+
+2.categoriesテーブルのデータを取得せよ
+
+SELECT * FROM categories;
+
+3.categoriesテーブルから文字数が6のデータを抽出せよ
+
+SELECT * FROM categories
+WHERE char_length(category)=6;
+
+4.equテーブルに次のデータを追加せよ name:王者の剣 cat_id:1 value:100 b_price:30000 s_price:NULL
+
+INSERT INTO equ(name,cat_id,value,b_price,s_price)
+VALUES ('王者の剣',1,100,30000,NULL);
+
+5.equテーブルをnameの昇順で表示せよ
+
+SELECT * FROM equ ORDER BY name ASC;
+
+6.equテーブルからb_priceの値が2番目から4番目に高いデータを抽出せよ
+
+SELECT * FROM equ ORDER BY b_price DESC LIMIT 3 OFFSET 1;
+
+7.equテーブルからb_priceが3000以上のデータを抽出せよ
+
+SELECT * FROM equ WHERE b_price >= 3000;
+
+8.equテーブルからcat_idが2以外のデータを抽出せよ
+
+SELECT * FROM equ WHERE cat_id<>2;
+
+9.equテーブルからcat_idが2でvalueが30以上のデータを抽出せよ
+
+SELECT * FROM equ WHERE cat_id = 2 AND value >= 30;
+
+10.equテーブルからvalueが10未満もしくは20以上のデータを抽出せよ
+
+SELECT * FROM equ WHERE value < 10 OR value >= 20;
+
+11.equテーブルからvalueが10~30のデータを取得せよ
+
+SELECT * FROM equ WHERE value BETWEEN 10 AND 30;
+12.equテーブルのうち、valueが20以上のデータの件数を求めよ
+
+SELECT count(*) FROM equ WHERE value >= 20;
+
+13.equテーブルからnameに「イ」が含まれるデータのnameとcate_idを抽出せよ
+
+SELECT name,cat_id FROM equ WHERE name LIKE '%イ%';
+
+14.equテーブルからnameを名前、b_priceを買値、s_priceを売値として抽出せよ
+
+SELECT name AS 名前, b_price AS 買値, s_price AS 売値 FROM equ;
+
+15.equテーブルからs_priceがb_priceの半分の値を超えるデータを抽出せよ
+
+SELECT * FROM equ WHERE s_price > (b_price / 2);
+
+16.equテーブルからnameを名前として、s_priceからb_priceを引いた値を差額として取得せよ(NULLは除外すること)
+
+SELECT name AS 名前, (s_price - b_price) FROM equ WHERE s_price AND b_price IS NOT NULL;
+
+17.equテーブルからnameを名前として、b_priceを価格として、cat_idの値に「階」を結合した文字列(例:1階)を売り場として取得せよ
+
+SELECT name AS 名前,b_price AS 価格,
+concat(cat_id,'階') FROM equ;
+
+18.equテーブルとcategoriesテーブルを結合し、name,category,valueを抽出し、cat_idの昇順、次いでvalueの降順で表示せよ
+
+SELECT equ.name,categories.category,equ.value FROM equ
+JOIN categories
+ON categories.id=equ.cat_id
+ORDER BY cat_id ASC, value DESC;
+
+19.equテーブルとcategoriesテーブルを結合し、category名とcategory別のb_priceの平均(整数で表示)を昇順で表示せよ
+
+SELECT categories.category,floor(avg(equ.b_price)) FROM categories
+JOIN equ
+ON categories.id=equ.cat_id
+GROUP BY category
+ORDER BY b_price ASC;
+
+20.equテーブルとcategoriesテーブルを結合し、category別のs_priceの合計を求め、求めた値が1000以上のcategory名とその値を表示せよ
+
+SELECT categories.category,sum(equ.s_price) FROM categories
+JOIN equ
+ON categories.id=equ.cat_id
+GROUP BY category
+HAVING sum(equ.s_price) >= 1000;
