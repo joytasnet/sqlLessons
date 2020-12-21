@@ -73,14 +73,17 @@ VALUES
 1. booksに以下のデータを挿入せよ
   ('理由','宮部みゆき', NULL, 45, 1, '1998-12-21')
 
+```
 INSERT INTO books(`id`, `title`, `writer`, `pub_id`, `number_of_copies`, `award_id`, `release    `)
  VALUES(NULL,'理由','宮部みゆき', NULL, 45, 1, '1998-12-21')
-
+```
 
 2. 発売日が2000年以降のデータを部数の降順に抽出せよ
 
+```
 SELECT release FROM books
 WHERE 
+```
 
 3. 文藝春秋のデータを部数の昇順に抽出せよ
 
