@@ -1,0 +1,88 @@
+以下の問に答えよ(20問)
+1.game_softのreleasedがNULLのデータを抽出せよ
+SELECT * FROM game_soft WHERE released IS NULL;
+
+2.問1で抽出したデータのreleasedのNULLを'2017-09-29'へ変更せよ
+UPDATE game_soft set released='2017-09-29'WHERE id=15;
+
+3.game_softのreleasedがNULLではないデータを抽出せよ
+SELECT * FROM game_soft WHERE released IS NOT NULL;
+
+4.game_hardの開発元が任天堂のデータを抽出せよ
+SELECT * FROM game_hard WHERE 開発元='任天堂';
+
+5.game_hardの開発元がソニーではないデータを抽出せよ
+SELECT * FROM game_hard WHERE 開発元<>'Sony';
+
+6.'genre','released'を'ジャンル','発売日'と表示させて抽出せよ
+SELECT genre AS ジャンル released AS 発売日 FROM game_soft;
+//他項目も取得
+SELECT id,title,genre AS ジャンル ,released AS 発売日,
+hard_id,price FROM game_soft;
+
+7.game_softのpriceが5000以上のデータを抽出せよ 取得項目はtitleとpriceとする
+SELECT title,price FROM game_soft WHERE price>=5000;
+
+8.priceの値が最も大きいデータを抽出せよ 取得項目はtitleとする
+SELECT title FROM game_soft
+WHERE price= (SELECT max(price) FROM game_soft);
+//もしくは
+SELECT title FROm game_soft
+ORDER BY price DESC
+LIMIT 1;
+
+9.game_softをreleasedの昇順で並び替えよ
+SELECT * FROM game_soft
+ORDER BY released;
+
+10.releasedが'2016-01-01'より前のデータのpriceを半額にせよ
+UPDATE game_soft set
+price=(price/2)
+WHERE released<'2016-01-01';
+
+11.genreの種類一覧を抽出せよ
+SELECT DISTINCT genre FROM game_soft;
+
+12.genreにて'アクション'が含まれているデータを抽出せよ
+SELECT * FROM game_soft WHERE genre LIKE '%アクション%';
+
+13.機種名毎に、使用できるソフトのpriceの合計を表示せよ 取得項目は機種名とsum(price)とする
+SELECT h.機種名,sum(s.price) AS'sum(price)'
+FROM game_soft AS s
+JOIN game_hard AS h
+ON s.hard_id=h.id
+GROUP BY s.hard_id;
+
+14.機種名毎に、使用できるソフトのpriceの平均を表示せよ 取得項目は機種名とavg(price)とする
+SELECT h.機種名,avg(s.price) AS'avg(price)'
+FROM game_soft AS s
+JOIN game_hard AS h
+ON s.hard_id=h.id
+GROUP BY s.hard_id;
+
+15.機種名が3DSで使用できるgame_softのデータを抽出せよ
+SELECT * 
+FROM game_soft AS s
+JOIN game_hard AS h
+ON s.hard_id=h.id
+WHERE h.機種名='3DS';
+
+16.titleの文字数を表示せよ
+SELECT title,char_length(title) AS length FROM game_soft;
+
+17.priceの合計額を、3桁毎に[,]をいれて表示せよ
+SELECT format(sum(price),0) FROM game_soft;
+
+18.titleがCupheadのデータを、Switchで使用できるソフトとして変更せよ
+UPDATE game_soft set
+hard_id=2
+WHERE title='Cuphead';
+
+19.game_softに タイトル:Horizon Zero Dawn,発売日:2017-03-02,hard_id:4 のデータを挿入せよ
+INSERT INTO game_soft(title,released,hard_id)
+VALUES
+('Horizon Zero Dawn','2017-03-02',4);
+
+20.開発元がSonyの機種で使用できるgame_softのデータを削除せよ
+DELETE FROM game_soft
+WHERE hard_id IN(3,4);
